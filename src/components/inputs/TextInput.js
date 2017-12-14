@@ -1,11 +1,13 @@
 import React from 'react';
+import Aux from 'react-aux';
 
-export default (props) => (
-    <div className="input-group">
-        <label htmlFor={this.props.name}>{this.props.label}</label>
-        <input
-            type="text"
-            {...props}            
-        />
-    </div>
-);
+export default (props) => {
+    console.log(props)
+    return (
+        <Aux>
+            <input {...props} />
+            {props.meta.touched && props.meta.error &&
+            <span className="error">{props.meta.error}</span>}
+        </Aux>
+    )
+};

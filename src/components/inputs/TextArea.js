@@ -1,10 +1,12 @@
 import React from 'react';
+import Aux from 'react-aux';
 
 export default (props) => (
-    <div className="input-group">
-        <label htmlFor={this.props.name}>{this.props.label}</label>
+    <Aux>
         <textarea
             {...props}
         ></textarea>
-    </div>
+        {props.meta.touched && props.meta.error &&
+            <span className="error">{props.meta.error}</span>}
+    </Aux>
 );
