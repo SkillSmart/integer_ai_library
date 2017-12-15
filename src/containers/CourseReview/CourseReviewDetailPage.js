@@ -18,7 +18,7 @@ class CourseDetailPage extends Component {
 
   render() {
     // Destructuring the varibles from the props object
-    let { course, courses, author, authors } = this.props;
+    let { review, reviewedCourses, author, authors } = this.props;
 
     return (
       <div>
@@ -26,15 +26,15 @@ class CourseDetailPage extends Component {
           <AuthorBox
             author={this.author} />
           <InstitutionBox
-            institutionID={course.institution} />
+            institutionID={review.institution} />
         </div>
         <div className="main">
         <span><Link to={`/courses/reviews`}>back to Course Library</Link></span>
-        <Link to={`/courses/reviews/${course.slug}/edit`}>Edit Course</Link>
+        <Link to={`/courses/reviews/${review.slug}/edit`}>Edit Course</Link>
           <CourseDisplay
-            course={course} />
+            course={review} />
           <CourseTiles
-            courses={courses}
+            courses={reviewedCourses}
           />
         </div>
       </div>
@@ -45,8 +45,8 @@ class CourseDetailPage extends Component {
 // Move the creation and selection of all props down here, instead of extracting
 // them in the constructor call 
 const mapStateToProps = (state, {match}) => ({
-  courses: state.courses.reviewedCourses,
-  course: getCourseBySlug(state.courses.reviewedCourses, match.params.slug) || {},
+  reviewedCourses: state.courses.reviewedCourses,
+  review: getCourseBySlug(state.courses.reviewedCourses, match.params.slug) || {},
   authors: state.authors,
 });
 

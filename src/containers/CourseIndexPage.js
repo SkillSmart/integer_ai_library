@@ -3,7 +3,10 @@ import React from 'react';
 import CourseSectionNavigation from '../components/navigation/CourseSectionNavigation';
 import { BrowserRouter,Route, NavLink } from 'react-router-dom';
 
-// Route Imports
+// CourseSeachRouted
+import CourseLibraryDashboard from './CourseLibrary';
+
+// CourseReview Routes
 import CourseReviewListPage from './CourseReview/CourseReviewListPage';
 import CourseReviewCreatePage from './CourseReview/CourseReviewCreatePage';
 import CourseReviewUpdatePage from './CourseReview/CourseReviewUpdatePage';
@@ -24,12 +27,11 @@ export default ({ match }) => {
             <div>
                 <h3>The courses Index Header !!</h3>
             </div>
+            <Route exact path={`${match.url}`}  component={CourseLibraryDashboard} />
             <Route path={`${match.url}/reviews`} component={CourseReviewListPage} />
             <Route path={`${match.url}/reviews/new/`} component={CourseReviewCreatePage} />
             <Route path={`${match.url}/reviews/:slug/edit`} component={CourseReviewUpdatePage} />
             <Route path={`${match.url}/courses/reviews/:slug/`} component={CourseReviewDetailPage} />
-
-
         </div>
     )
 };

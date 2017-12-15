@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import actions from '../actions';
-import ProjectForm from '../components/forms/ProjectForm';
-import ProjectList from '../components/ProjectList';
+import actions from '../../actions';
+import ProjectForm from '../../components/forms/ProjectForm';
+import ProjectList from '../../components/ProjectList';
 
 class ProjectCreatePage extends Component {
 

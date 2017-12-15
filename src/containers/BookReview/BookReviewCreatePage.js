@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import actions from '../actions';
-import BookForm from '../components/BookForm';
+import actions from '../../actions';
+import BookForm from '../../components/BookForm';
 
 class BookCreatePage extends Component {
     constructor (props) {

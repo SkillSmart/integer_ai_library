@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 // Local imports
-import BookDisplay from '../components/BookDisplay';
-import AuthorBox from '../components/AuthorBox';
-import PublisherBox from '../components/PublisherBox';
+import BookDisplay from '../../components/BookDisplay';
+import AuthorBox from '../../components/AuthorBox';
+import PublisherBox from '../../components/PublisherBox';
 
 class BookDetailPage extends Component {
   constructor(props) {

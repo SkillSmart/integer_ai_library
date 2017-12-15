@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import actions from '../actions';
+import actions from '../../actions';
 import { Link } from 'react-router-dom';
 
-import ProjectList from '../components/ProjectList';
-import ProjectDisplay from '../components/ProjectDisplay';
+import ProjectList from '../../components/ProjectList';
+import ProjectDisplay from '../../components/ProjectDisplay';
 
 class ProjectListPage extends Component {
   render() {

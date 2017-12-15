@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 import actions from '../../actions';
+import {getCourseById} from '../../selectors/course';
 
 import CourseList from '../../components/CourseList';
 import CourseDisplay from '../../components/CourseDisplay';
@@ -17,20 +18,20 @@ class CourseListPage extends Component {
 
     render() {
         console.log(this.props)
-        let { selectCourse, activeCourse, courses } = this.props;
+        let { selectReview, review, reviewedCourses } = this.props;
         return (
             <div>
                 <Link to={'/courses/new'}>Add Review</Link>
                 <div className="sidebar">
-                    <h3>The Course List Page</h3>
+                    <h3>Our Course Reviews</h3>
                     <CourseList
-                        onClick={selectCourse}
-                        courses={courses} />
+                        onClick={selectReview}
+                        courses={reviewedCourses} />
                 </div>
                 <div className="main">
-                    <h3>Course Detail</h3>
-                    <CourseDisplay course={activeCourse} />
-                    <CourseTiles courses={courses} />
+                    <h3>Course Review in Detail</h3>
+                    <CourseDisplay course={review} />
+                    <CourseTiles courses={reviewedCourses} />
                 </div>
             </div>
         )
@@ -38,13 +39,13 @@ class CourseListPage extends Component {
 };
 
 const mapStateToProps = (state) => ({
-    courses: state.courses.reviewedCourses,
-    activeCourse: state.courses.activeCourse,
+    reviewedCourses: state.courses.reviewedCourses,
+    review: getCourseById(state.courses.reviewedCourses, state.courses.selectedReview),
 });
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        selectCourse: actions.courseActions.selectCourseReview
+        selectReview: actions.courseActions.selectCourseReview
     }, dispatch)
 };
 

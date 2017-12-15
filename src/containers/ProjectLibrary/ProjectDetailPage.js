@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import actions from '../actions';
-import { getProjectBySlug } from '../selectors/project';
-import ProjectDisplay from '../components/ProjectDisplay';
-import ProjectSlideshow from '../components/ProjectSlideshow';
-import ProjectStatusBar from '../components/ProjectStatusBar';
+import actions from '../../actions';
+import { getProjectBySlug } from '../../selectors/project';
+import ProjectDisplay from '../../components/ProjectDisplay';
+import ProjectSlideshow from '../../components/ProjectSlideshow';
+import ProjectStatusBar from '../../components/ProjectStatusBar';
 // Sidebar imports
-import TechStackBox from '../components/TechStackBox';
+import TechStackBox from '../../components/TechStackBox';
 
 class ProjectDetailPage extends Component {
 
