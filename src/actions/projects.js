@@ -6,6 +6,11 @@ export const addProject = (projectObj) => ({
     payload: projectObj
 });
 
+export const selectProject = (projectId) => ({
+    type: actions.SELECT_PROJECT,
+    payload: projectId
+});
+
 export const updateProject = (id, updates) => ({
     type: actions.UPDATE_PROJECT,
     payload: {

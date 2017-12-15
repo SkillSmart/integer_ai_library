@@ -5,6 +5,7 @@ const initialState = {
         {
             id: "12345",
             title: 'First Project',
+            slug: "first-project-slag",
             headline: 'Webcrawler for Topic extraction from Tech Articles',
             situation: 'A situation that got me or the client actually involved in producing the solution',
             usecase: 'A simple usecase to describe the project',
@@ -18,6 +19,7 @@ const initialState = {
         {
             id: "12346",
             title: 'Second Project',
+            slug: 'second-project-slag',
             headline: 'Nightcrawler for Shop Loading',
             situation: 'A situation that got me or the client actually involved in producing the solution',
             usecase: 'A simple usecase to describe the project',
@@ -27,28 +29,30 @@ const initialState = {
             url: 'https://anaconda.com/exampleurl',
             startDate: '2017-11-01',
             endDate: '2017-21-12',
-    
+
         }
     ],
-    selectedProject: projects[0].id,
+    selectedProject: "12345",
 };
 
 export default (state = initialState, { type, payload }) => {
-    switch(type){
+    switch (type) {
         case actions.ADD_PROJECT:
             return state.projects.concat(payload);
         case actions.SELECT_PROJECT:
-            console.log("[Select Project]", payload);       
-            const selectedProject = state.projects.find( project => project.id === payload);     
-            return { selectedProject };
+            console.log("[Select Project]", state);
+            const selectedProject = state.projects.find(project => project.id === payload);
+            return {
+                ...state,
+                selectedProject: selectedProject.id
+            };
         case actions.REMOVE_PROJECT:
-            console.log("[Remove Project]", payload);            
-            return state.filter( course => !course.id === payload);
+            console.log("[Remove Project]", payload);
+            return state.filter(course => !course.id === payload);
         case actions.UPDATE_PROJECT:
-            let {id, updates} = payload;
-
-            console.log("Update Project", updates);
-            const updatedProjects = state.projects.map( project => {
+            let { id, updates } = payload;
+            console.log("UPATE-PROJECT", payload)
+            const updatedProjects = state.projects.map(project => {
                 if (project.id === id) {
                     return {
                         ...project,
@@ -56,8 +60,12 @@ export default (state = initialState, { type, payload }) => {
                     };
                 }
                 return project;
-            })
-            return updatedProjects;
+            });
+
+            return {
+                ...state,
+                projects: updatedProjects
+            };
         default:
             return state;
     }

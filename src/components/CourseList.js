@@ -2,13 +2,13 @@ import React from 'react'
 
 import CourseListItem from './CourseListItem';
 
-export default ({ courses, onSelect }) => (
+export default ({ courses, onClick }) => (
     <ul>
         {courses.map(course =>
             <CourseListItem
                 key={course.id}
-                link={`/courses/${course.slug}`}
-                onClick={() => onSelect(course)}
+                link={`/courses/reviews/${course.slug}`}
+                onClick={() => onClick(course.id)}
                 course={course} />
         )}
     </ul>

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import actions from '../actions';
+import actions from '../../actions';
 
-import CourseForm from '../components/forms/CourseForm';
+import CourseForm from '../../components/forms/CourseForm';
 
 class CourseUpdatePage extends Component {
 
     handleSubmit = (values) => {
-        this.props.updateCourse(values.id, values);
-        this.props.history.push(`/courses/${values.slug}`)
+        this.props.updateCourseReview(values.id, values);
+        this.props.history.push(`/courses/reviews/${values.slug}`)
     }
 
     render() {
@@ -25,7 +25,7 @@ class CourseUpdatePage extends Component {
     }
 }
 const mapStateToProps = (state, props) => ({
-    course: state.courses.find(course => course.slug === props.match.params.slug)
+    course: state.courses.reviewedCourses.find(course => course.slug === props.match.params.slug)
 })
 
-export default connect(mapStateToProps, { updateCourse: actions.courseActions.updateCourse })(CourseUpdatePage);
+export default connect(mapStateToProps, { updateCourseReview: actions.courseActions.updateCourseReview })(CourseUpdatePage);

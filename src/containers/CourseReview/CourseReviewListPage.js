@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-import actions from '../actions';
+import actions from '../../actions';
 
-import CourseList from '../components/CourseList';
-import CourseDisplay from '../components/CourseDisplay';
-import CourseTiles from '../components/CourseTiles';
+import CourseList from '../../components/CourseList';
+import CourseDisplay from '../../components/CourseDisplay';
+import CourseTiles from '../../components/CourseTiles';
 
 
 class CourseListPage extends Component {
@@ -24,7 +24,7 @@ class CourseListPage extends Component {
                 <div className="sidebar">
                     <h3>The Course List Page</h3>
                     <CourseList
-                        onSelect={selectCourse}
+                        onClick={selectCourse}
                         courses={courses} />
                 </div>
                 <div className="main">
@@ -38,13 +38,13 @@ class CourseListPage extends Component {
 };
 
 const mapStateToProps = (state) => ({
-    courses: state.courses,
-    activeCourse: state.activeCourse,
+    courses: state.courses.reviewedCourses,
+    activeCourse: state.courses.activeCourse,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        selectCourse: actions.courseActions.selectCourse,
+        selectCourse: actions.courseActions.selectCourseReview
     }, dispatch)
 };
 

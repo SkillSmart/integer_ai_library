@@ -10,32 +10,32 @@ const FIELDS = {
     title: {
         label: "Title",
         type: "text",
-        component: TextInput
+        component: "input"
     },
     slug: {
         label: "Slug",
         type: "text",
-        component: TextInput
+        component: "input"
     },
     headline: {
         label: "Summary Headline",
         type: "text",
-        component: TextArea
+        component: "textarea"
     },
     summary: {
         label: "Summary",
         type: "text",
-        component: TextArea
+        component: "textarea"
     },
     publisher: {
         label: "Publisher",
         type: "text",
-        component: TextInput
+        component: "input"
     },
     isbn: {
         label: "ISBN Number",
         type: "text",
-        component: TextInput
+        component: "input"
     }
 };
 
@@ -43,7 +43,7 @@ const FIELDS = {
 const renderField = (fieldConfig, field) => {
     let { label, type, component } = fieldConfig;
     return (
-        <div>
+        <div key={field}>
             <label htmlFor={field}>{label}</label>
             <Field name={field} type={type} component={component} />
         </div>

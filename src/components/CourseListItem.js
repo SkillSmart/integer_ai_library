@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 
-export default ({ course, onClick = null, link }) => (
+export default ({ course, onClick, link }) => (
     <li onClick={onClick}>
         <div className="Header">
             <span>{course.teacher}</span>

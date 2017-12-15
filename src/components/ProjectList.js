@@ -1,13 +1,18 @@
-import React from 'react';
+import React from 'react'
+
 import ProjectListItem from './ProjectListItem';
 
-export default (props) => {
-    let { projects } = props;
-    return (
-        <ul className="ProjectList">
-            {projects.map(project => <ProjectListItem
-                key={project.id}
-                project={project}/>)}
+export default ({ projects, selectHandler }) => (
+    <div>
+        <h3>List of Projects</h3>
+        <ul>
+            {projects.map(project =>
+                <ProjectListItem
+                    key={project.id}
+                    onClick= { selectHandler?() => selectHandler(project.id): null }
+                    project={project}
+                />
+            )}
         </ul>
-    )
-};
+    </div>
+)

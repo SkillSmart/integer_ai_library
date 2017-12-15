@@ -7,6 +7,7 @@ import activeCourseReducer from './activeCourseReducer';
 import institutionReducer from './institutionReducer';
 import publisherReducer from './publisherReducer';
 import {reducer as formReducer} from 'redux-form';
+import projectsReducer from './projectsReducer';
 
 export default combineReducers({
     books: booksReducer,
@@ -17,4 +18,5 @@ export default combineReducers({
     institutions: institutionReducer,
     publisher: publisherReducer,
     form: formReducer,
+    projects: projectsReducer,
 });

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getCourseBySlug } from '../selectors/course';
-import { getAuthorByName } from '../selectors/author';
+import { getCourseBySlug } from '../../selectors/course';
+import { getAuthorByName } from '../../selectors/author';
 import { Link } from 'react-router-dom';
 
-import CourseDisplay from '../components/CourseDisplay';
-import CourseTiles from '../components/CourseTiles';
-import InstitutionBox from '../components/InstitutionBox';
-import AuthorBox from '../components/AuthorBox';
+import CourseDisplay from '../../components/CourseDisplay';
+import CourseTiles from '../../components/CourseTiles';
+import InstitutionBox from '../../components/InstitutionBox';
+import AuthorBox from '../../components/AuthorBox';
 
 class CourseDetailPage extends Component {
 
@@ -29,8 +29,8 @@ class CourseDetailPage extends Component {
             institutionID={course.institution} />
         </div>
         <div className="main">
-        <span><Link to="/courses">back to Course Library</Link></span>
-        <Link to={`/courses/${course.slug}/edit`}>Edit Course</Link>
+        <span><Link to={`/courses/reviews`}>back to Course Library</Link></span>
+        <Link to={`/courses/reviews/${course.slug}/edit`}>Edit Course</Link>
           <CourseDisplay
             course={course} />
           <CourseTiles
@@ -44,9 +44,9 @@ class CourseDetailPage extends Component {
 
 // Move the creation and selection of all props down here, instead of extracting
 // them in the constructor call 
-const mapStateToProps = (state, props) => ({
-  courses: state.courses,
-  course: getCourseBySlug(state.courses, props.match.params.slug) || {},
+const mapStateToProps = (state, {match}) => ({
+  courses: state.courses.reviewedCourses,
+  course: getCourseBySlug(state.courses.reviewedCourses, match.params.slug) || {},
   authors: state.authors,
 });
 

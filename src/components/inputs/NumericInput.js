@@ -6,6 +6,7 @@ export default (props) => (
         <input
             type="numeric"
             {...props}
+            defaultValue={props.meta.initial}
         />
         {props.meta.touched && props.meta.error &&
             <span className="error">{props.meta.error}</span>}
