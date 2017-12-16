@@ -47,4 +47,14 @@ module.exports = (app) => {
             res.status(422).send(error);
         }
     });
+
+    // DELETE
+    app.delete('/courses', async (req, res) => {
+        try {
+            let response = await Course.remove({});
+            res.send(response);
+        } catch (e) {
+            res.status(400).send(e)
+        }
+    })
 }

@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const CourseSchema = new Schema({
-    title: String,
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     slug: {
         type: String
     },
@@ -10,17 +15,27 @@ const CourseSchema = new Schema({
     summary: String,
     institution: String,
     teacher: String,
-    noModules: Number,
-    noLessons: Number,
-    noProjects: Number,
-    duration: String
+    stats: {
+        noModules: Number,
+        noLessons: Number,
+        noProjects: Number,
+        duration: String
+    },
+    meta: {
+        rank: Number,
+        favs: Number,
+    }
 });
 
 
-CourseSchema.pre('save', function (next){
+CourseSchema.pre('save', function(next) {
     // Create  a slug from the title if none is given
-    if(!this.slug) {
-        this.slug = this.title.replace(' ', '-').toLowerCase();
+    if (!this.slug) {
+        try {
+            this.slug = this.title.replace(/ /g, '-').toLowerCase();
+        } catch (e) {
+            console.log(e);
+        }
     }
     next();
 })
