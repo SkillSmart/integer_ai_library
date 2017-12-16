@@ -5,6 +5,8 @@ import BookList from './BookList';
 
 
 const AuthorBox = ({ authorId, authors }) => {
+    if(!authors || !authorId) return null;
+    
     let author = authors.find( author => author.id === authorId);
     return (
         <div>

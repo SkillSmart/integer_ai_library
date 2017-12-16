@@ -1,41 +1,18 @@
 import types from './actionTypes';
+import CourseApi from '../api/CourseApi';
 
-
-// create a course
-export const addCourseReview = (courseObj) => ({
-        type: types.ADD_COURSE_REVIEW,
-        payload: courseObj
-});
-
-// select a course
-export const selectCourseReview = (courseId) => ({
-    type: types.SELECT_COURSE_REVIEW,
-    payload: courseId
-});
-
-// delete a course
-export const removeCourseReview = (courseId) => ({
-    type: types.REMOVE_COURSE_REVIEW,
-    payload: courseId
-});
-// update a course
-export const updateCourseReview = (id, values) => ({
-    type: types.UPDATE_COURSE_REVIEW,
-    payload: {id, values}
-})
-
-// fav a course
-export const favCourseReview = (courseId, userId) => ({
-    type: types.FAV_COURSE_REVIEW,
-    payload: {
-        courseId: courseId,
-        userId: userId
+// Fetch actions
+export const fetchCourses = async () => {
+    return async function (dispatch) {
+        try {
+            let courses = await CourseApi.getAllCourses();
+            dispatch(loadCoursesSuccess(courses));
+        } catch (e) {
+            throw(e);
+        }
     }
+};
+export const loadCoursesSuccess = (courses) => ({
+    type: types.LOAD_COURSE_SUCCESS,
+    payload: courses
 });
-
-// hide a course
-export const hideCoures = (courseId, userId) => ({
-    type: types.HIDE_COURSE
-});
-
-// 

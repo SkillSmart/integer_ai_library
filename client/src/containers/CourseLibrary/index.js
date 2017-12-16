@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import actions from '../../actions';
+import axios from 'axios';
 
 import CourseSearch from '../../components/CourseSearch';
 import CourseSearchFilter from '../CourseSearchFilter';
 
 class LibraryDashboard extends Component {
+
+  componentWillMount() {
+    // if(!thicos.props.)
+  }  
+
   render() {
     return (
       <div>
@@ -28,4 +35,4 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps)(LibraryDashboard);
+export default connect(mapStateToProps, actions)(LibraryDashboard);

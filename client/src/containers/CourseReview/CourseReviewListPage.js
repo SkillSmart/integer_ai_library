@@ -4,11 +4,12 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 import actions from '../../actions';
-import {getCourseById} from '../../selectors/course';
+import { getCourseReviewById } from '../../selectors/courseReview';
 
 import CourseList from '../../components/CourseList';
-import CourseDisplay from '../../components/CourseDisplay';
-import CourseTiles from '../../components/CourseTiles';
+import CourseReviewDisplay from '../../components/CourseReviewDisplay';
+import CourseReviewTiles from '../../components/CourseReviewTiles';
+import { fetchCourseReviews } from '../../actions/courseReviews';
 
 
 class CourseListPage extends Component {
@@ -16,9 +17,15 @@ class CourseListPage extends Component {
         super(props);
     };
 
+    componentWillMount() {
+        if (!this.props.courseReviews) {
+            this.props.fetchReviews()
+        }
+    };
+
+
     render() {
-        console.log(this.props)
-        let { selectReview, review, reviewedCourses, match } = this.props;
+        let { selectReview, selectedReview, courseReviews, match } = this.props;
         return (
             <div>
                 <Link to={`${match.url}/new`}>Add Review</Link>
@@ -26,26 +33,35 @@ class CourseListPage extends Component {
                     <h3>Our Course Reviews</h3>
                     <CourseList
                         onClick={selectReview}
-                        courses={reviewedCourses} />
+                        courses={courseReviews} />
                 </div>
-                <div className="main">
-                    <h3>Course Review in Detail</h3>
-                    <CourseDisplay course={review} />
-                    <CourseTiles courses={reviewedCourses} />
-                </div>
+
+                {courseReviews ? (
+                    <div className="main">
+                        <h3>Course Review in Detail</h3>
+                        <CourseReviewTiles courses={courseReviews} />
+                        <CourseReviewDisplay course={getCourseReviewById(courseReviews, selectedReview)} />
+                    </div>
+                ) : (
+                        <div className="main">
+                            <h2>Start up the Course Review Section</h2>
+                            <p>Currently there are no Reviews available</p>
+                        </div>
+                    )
+                }
             </div>
         )
-    }
+    };
 };
 
 const mapStateToProps = (state) => ({
-    reviewedCourses: state.courses.reviewedCourses,
-    review: getCourseById(state.courses.reviewedCourses, state.courses.selectedReview),
+    courseReviews: state.courseReviews.reviews,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        selectReview: actions.courseActions.selectCourseReview
+        selectReview: actions.courseReviewActions.selectCourseReview,
+        fetchReviews: actions.courseReviewActions.fetchCourseReviews,
     }, dispatch)
 };
 

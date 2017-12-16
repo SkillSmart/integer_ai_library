@@ -9,13 +9,13 @@ const ALLOWED_ATTRIBUTES = [
 
 module.exports = (app) => {
 
-    app.get('/courses', async (req, res) => {
+    app.get('/api/reviews/courses', async (req, res) => {
         let courses = await Course.find({});
         if (!courses) res.status(422).send({ error: "Unable to retrieve the list of courses" });
         res.send(courses);
     });
 
-    app.get('/courses/:id', async (req, res) => {
+    app.get('/api/reviews/courses/:id', async (req, res) => {
         let course = await Course.findById(req.params.id);
 
         if (!course) res.status(422).send({ error: "Unable to find the requested Object." });
@@ -23,7 +23,7 @@ module.exports = (app) => {
     });
 
     // CREATE
-    app.post('/courses', async (req, res) => {
+    app.post('/api/reviews/courses', async (req, res) => {
         let courses;
 
         if (req.body.length) {
@@ -49,7 +49,7 @@ module.exports = (app) => {
     });
 
     // UPDATE
-    app.patch('/courses/:id', async (req, res) => {
+    app.patch('/api/reviews/courses/:id', async (req, res) => {
         let body = _.pick(req.body, ALLOWED_ATTRIBUTES);
         try {
             let response = await Course.findOneAndUpdate({_id: req.params.id}, body, { new: true });
@@ -60,7 +60,7 @@ module.exports = (app) => {
     });
 
     // DELETE
-    app.delete('/courses', async (req, res) => {
+    app.delete('/api/reviews/courses', async (req, res) => {
         try {
             let response = await Course.remove({});
             res.send(response);
@@ -69,7 +69,7 @@ module.exports = (app) => {
         }
     });
 
-    app.delete('/courses/:id', async (req, res) => {
+    app.delete('/api/reviews/courses/:id', async (req, res) => {
         try {
             let response = await Course.findByIdAndRemove(req.params.id);
             res.send(response);

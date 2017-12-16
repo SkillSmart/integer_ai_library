@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import CourseTile from './CourseTile';
+import CourseReviewTile from './CourseReviewTile';
 
-class CourseTiles extends Component {
+class CourseReviewTiles extends Component {
     state = {
         selectedCard: undefined
     }
@@ -15,9 +15,9 @@ class CourseTiles extends Component {
         return (
             <div>
                 {this.props.courses.map(
-                    course => <CourseTile
+                    course => <CourseReviewTile
                         onClick={() => this.onSelect(course.id)}
-                        key={course.id}
+                        key={course.id} 
                         course={course} />
                 )}
             </div>
@@ -29,4 +29,4 @@ class CourseTiles extends Component {
 //    courses: state.courses 
 // });
 
-export default CourseTiles
+export default CourseReviewTiles;

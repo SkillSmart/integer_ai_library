@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+// Import Action Creators
 import actions from '../../actions';
 
 import CourseListItem from '../../components/CourseListItem';
@@ -16,8 +17,7 @@ class CourseCreatePage extends Component {
     this.props.addCourseReview(values);
     // Validate information
 
-    // this.props.history.push('/courses');
-    console.log(values);
+    this.props.history.push('/courses/reviews');
   }
   render() {
     return (
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addCourseReview: actions.courseActions.addCourseReview
+    addCourseReview: actions.courseReviewActions.addCourseReview
   }, dispatch);
 };
 

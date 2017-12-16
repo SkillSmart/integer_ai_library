@@ -25,6 +25,7 @@
     "concurrently": "^3.5.1",
     "express": "^4.16.2",
     "moment": "^2.19.4",
-    "mongoose": "^4.13.7"
+    "mongoose": "^4.13.7",
+    "redux-thunk": "^2.2.0"
   }
 }

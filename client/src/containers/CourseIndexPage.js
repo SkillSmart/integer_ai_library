@@ -3,6 +3,7 @@ import React from 'react';
 import CourseSectionNavigation from '../components/navigation/CourseSectionNavigation';
 import { Switch, Route, NavLink } from 'react-router-dom';
 
+import actions from '../actions';
 // CourseLibrary
 import CourseLibraryDashboard from './CourseLibrary';
 import CourseCollections from './CourseLibrary/Collections';
@@ -17,7 +18,10 @@ import CourseReviewDetailPage from './CourseReview/CourseReviewDetailPage';
 
 export default ({ match }) => {
     console.log(match.url)
-    return (
+    // Initialize State for this section
+    actions.courseReviewActions.fetchCourseReviews();
+
+    return (    
         <div>
             <nav>
                 <NavLink to={`${match.url}`}>Library</NavLink>
@@ -35,7 +39,7 @@ export default ({ match }) => {
                 <Route path={`${match.url}/reviews/:slug/edit`} component={CourseReviewUpdatePage} />
                 <Route path={`${match.url}/reviews/:slug`} component={CourseReviewDetailPage} />
                 
-                <Route path={`${match.url}/collections/`} component={CourseCollections} />
+                <Route path={`${match.url}/collections`} component={CourseCollections} />
                 
             </Switch>
         </div>

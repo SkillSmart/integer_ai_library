@@ -31,7 +31,7 @@ const CourseSchema = new Schema({
 CourseSchema.pre('save', function(next) {
     // Create  a slug from the title if none is given
     if(!this.slug) {
-        this.slug = this.title.replace(/ /g, '-');
+        this.slug = this.title.replace(/ /g, '-').toLowerCase();
     } 
     next();
 });

@@ -5,9 +5,10 @@ import actions from '../actions';
 import SearchBarForm from './forms/SearchBarForm';
 import CourseTiles from './CourseTiles';
 
-function handleSubmit(values){
+function handleSubmit(values) {
     values.nativeEvent.preventDefault();
     console.log(values);
+
 };
 
 const SearchBar = ({ queryResult }) => (
@@ -15,14 +16,12 @@ const SearchBar = ({ queryResult }) => (
         <SearchBarForm
             onSubmit={handleSubmit}
         />
-        <CourseTiles
-            courses={queryResult}
-        />
+      
     </div>
 );
 
 const mapStateToProps = (state) => ({
-    queryResult: state.courses.queryResults
+    queryResult: state.courses.courses
 });
 
 export default connect(mapStateToProps, {
