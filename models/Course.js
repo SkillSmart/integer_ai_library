@@ -21,6 +21,10 @@ const CourseSchema = new Schema({
         noProjects: Number,
         duration: String
     },
+    projects: [{
+        type: Schema.Types.ObjectId,
+        ref: 'project'
+    }],
     meta: {
         rank: Number,
         favs: Number,
