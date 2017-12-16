@@ -30,14 +30,19 @@ const CourseSchema = new Schema({
 
 CourseSchema.pre('save', function(next) {
     // Create  a slug from the title if none is given
-    if (!this.slug) {
-        try {
-            this.slug = this.title.replace(/ /g, '-').toLowerCase();
-        } catch (e) {
-            console.log(e);
-        }
+    if(!this.slug) {
+        this.slug = this.title.replace(/ /g, '-');
+    } 
+    next();
+});
+
+CourseSchema.pre('findOneAndUpdate', function(next) {
+    
+    console.log(this)
+    if(this._update.title) {
+        this.findOneAndUpdate({}, { $set: { slug: this._update.title.replace(/ /g, '-').toLowerCase()}})
     }
     next();
-})
+});
 
 module.exports = mongoose.model('course', CourseSchema);
